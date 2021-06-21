@@ -6,10 +6,12 @@ namespace UserMgmtAPI.Application.Common.Interfaces
 {
     public interface IUserRepository
     {
-        Task<User> GetAllItem();
+        Task<SystemUser> GetAllItem();
 
-        Task<List<User>> GetAllUsers();
+        Task<List<SystemUser>> GetAllUsers();
 
-        Task<User> GetUserByUsername(string username);
+        Task<SystemUser> GetUserByUsername(string username);
+
+        void CreateUser(SystemUser user);
     }
 }

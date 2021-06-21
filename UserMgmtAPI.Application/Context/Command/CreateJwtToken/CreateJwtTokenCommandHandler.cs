@@ -20,9 +20,9 @@ namespace UserMgmtAPI.Application.Context.Command.CreateJwtToken
  
         public async Task<string> Handle(CreateJwtTokenCommandModel request, CancellationToken cancellationToken)
         {
-            var users = await _userRepository.GetUserByUsername("tommylee");
+            //var users = await _userRepository.GetUserByUsername("tommylee");
 
-            return _tokenService.GenerateJwtToken(new User { Id = 1, FirstName = "DAVID", LastName = "LEE", Password = "xxx", Username = "YYY" });
+            return _tokenService.GenerateJwtToken(new SystemUser { Id = "1", FirstName = "DAVID", LastName = "LEE", Password = "xxx", Username = "YYY" });
         }
     }
 }

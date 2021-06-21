@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyCQRSTemplate.Application.Common.Extensions;
+using Serilog;
 using System;
 using System.Text;
 using UserMgmtAPI.Infrastructure.Common;
@@ -88,7 +89,13 @@ namespace UserMgmtAPI
             // for you.
             builder.RegisterModule(new PersistenceModules());
             builder.RegisterModule(new InfrastructureModules());
-
+            builder.Register<ILogger>((c, p) =>
+            {
+                return new LoggerConfiguration()
+                  .WriteTo.Console()
+                  .WriteTo.Debug()
+                  .CreateLogger();
+            }).SingleInstance();
         }
 
 

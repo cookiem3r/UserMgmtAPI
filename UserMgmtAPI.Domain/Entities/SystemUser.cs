@@ -2,10 +2,10 @@
 
 namespace UserMgmtAPI.Domain.Entities
 {
-    public class User
+    public class SystemUser
     {
         [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty(PropertyName = "firstname")]
         public string FirstName { get; set; }
@@ -16,6 +16,7 @@ namespace UserMgmtAPI.Domain.Entities
         [JsonProperty(PropertyName = "username")]
         public string Username { get; set; }
 
+        [JsonProperty(PropertyName = "password")]
         [JsonIgnore]
         public string Password { get; set; }
 

@@ -10,7 +10,7 @@ namespace UserMgmtAPI.Infrastructure.Services
 {
     public class TokenService : ITokenService
     {
-        public string GenerateJwtToken(User user)
+        public string GenerateJwtToken(SystemUser user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("SECRET"));
