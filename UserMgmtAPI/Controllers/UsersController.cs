@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using UserMgmtAPI.Application.UserContext.Command.CreateNewUserCommand;
+using UserMgmtAPI.Application.UserContext.Command.LoginCommand;
 
 namespace UserMgmtAPI.Web.Controllers
 {
@@ -25,10 +27,10 @@ namespace UserMgmtAPI.Web.Controllers
 
         [HttpPost]
         [Route("user/login")]
-        public ActionResult CreateUser([FromBody] CreateNewUserCommandModel model)
+        public async Task<ActionResult> Login([FromBody] LoginCommandModel model)
         {
-            _mediator.Send(model);
-            return Ok("Created");
+            var result = await _mediator.Send(model);
+            return Ok(result);
         }
     }
 }

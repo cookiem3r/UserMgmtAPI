@@ -31,7 +31,7 @@ namespace UserMgmtAPI.Application.UserContext.Command.CreateNewUserCommand
 
             byte[] salt  = Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("SALT"));
 
-            user.SaltedPassword = Encoding.ASCII.GetString(_encryptionService.GenerateSaltedHash(Encoding.ASCII.GetBytes(request.Password), salt));
+            user.SaltedPassword = _encryptionService.ByteArrayToString(_encryptionService.GenerateSaltedHash(Encoding.ASCII.GetBytes(request.Password), salt));
 
             _userRepository.CreateUser(user);
             return await Task.FromResult(user.Id);
