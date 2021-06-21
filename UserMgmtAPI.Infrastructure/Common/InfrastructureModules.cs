@@ -8,6 +8,8 @@ namespace UserMgmtAPI.Infrastructure.Common
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule(new TokenModule());
+            builder.RegisterModule(new EncryptionModule());
+
             base.Load(builder);
         }
     }

@@ -1,10 +1,12 @@
 ﻿using MediatR;
-using UserMgmtAPI.Domain.Entities;
 
 namespace UserMgmtAPI.Application.UserContext.Command.CreateNewUserCommand
 {
     public class CreateNewUserCommandModel : IRequest<string>
     {
-        public SystemUser User { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }

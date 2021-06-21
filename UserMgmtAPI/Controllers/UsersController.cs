@@ -14,9 +14,18 @@ namespace UserMgmtAPI.Web.Controllers
         {
             _mediator = mediator;
         }
+
         [HttpPost]
         [Route("user/create")]
-        public ActionResult SecretString([FromBody] CreateNewUserCommandModel model)
+        public ActionResult CreateUser([FromBody] CreateNewUserCommandModel model)
+        {
+            _mediator.Send(model);
+            return Ok("Created");
+        }
+
+        [HttpPost]
+        [Route("user/login")]
+        public ActionResult CreateUser([FromBody] CreateNewUserCommandModel model)
         {
             _mediator.Send(model);
             return Ok("Created");

@@ -13,5 +13,7 @@ namespace UserMgmtAPI.Application.Common.Interfaces
         Task<SystemUser> GetUserByUsername(string username);
 
         void CreateUser(SystemUser user);
+
+        void ReplaceUser(SystemUser user);
     }
 }

@@ -53,5 +53,11 @@ namespace UserMgmtAPI.Persistence.Repository
             _logger.Information("Rquest Charge: {0} ",createNewUserResponse.RequestCharge);
         }
 
+        public async void ReplaceUser(SystemUser user)
+        {
+            ItemResponse<SystemUser> response = await _container.ReplaceItemAsync<SystemUser>(user, user.Id, new PartitionKey(user.Id));
+            _logger.Information("Rquest Charge: {0} ", response.RequestCharge);
+        }
+
     }
 }

@@ -5,6 +5,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System;
 using System.Text;
+using System.Security.Cryptography;
 
 namespace UserMgmtAPI.Infrastructure.Services
 {
@@ -27,9 +28,20 @@ namespace UserMgmtAPI.Infrastructure.Services
             return tokenHandler.WriteToken(token);
         }
 
-        public string RefreshTokenToken(string refreshToken, string username)
+        public RefreshToken GenerateRefreshToken(string Username)
         {
-            throw new NotImplementedException();
+            using (var rngCryptoServiceProvider = new RNGCryptoServiceProvider())
+            {
+                var randomBytes = new byte[64];
+                rngCryptoServiceProvider.GetBytes(randomBytes);
+                return new RefreshToken
+                {
+                    Token = Convert.ToBase64String(randomBytes),
+                    Expires = DateTime.UtcNow.AddDays(7),
+                    Created = DateTime.UtcNow,
+                    CreatedByUser = Username
+                };
+            }
         }
     }
 }
