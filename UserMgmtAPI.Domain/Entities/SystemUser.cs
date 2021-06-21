@@ -16,9 +16,8 @@ namespace UserMgmtAPI.Domain.Entities
         [JsonProperty(PropertyName = "username")]
         public string Username { get; set; }
 
-        [JsonProperty(PropertyName = "password")]
-        [JsonIgnore]
-        public string Password { get; set; }
+        [JsonProperty(PropertyName = "saltedpassword")]
+        public string SaltedPassword { get; set; }
 
         //[JsonIgnore]
         //public List<RefreshToken> RefreshTokens { get; set; }

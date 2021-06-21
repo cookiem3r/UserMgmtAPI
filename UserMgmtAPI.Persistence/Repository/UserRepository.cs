@@ -18,10 +18,8 @@ namespace UserMgmtAPI.Persistence.Repository
         public UserRepository(CosmosClient cosmosClient, ILogger logger)
         {
             _cosmosClient = cosmosClient;
-
             var db = _cosmosClient.GetDatabase("TokensDB");
             _container = db.GetContainer("Users");
-
             _logger = logger;
         }
 
@@ -51,7 +49,6 @@ namespace UserMgmtAPI.Persistence.Repository
 
         public async void CreateUser(SystemUser user)
         {
-            user.Password = "123";
             ItemResponse<SystemUser> createNewUserResponse = await _container.CreateItemAsync(user);
             _logger.Information("Rquest Charge: {0} ",createNewUserResponse.RequestCharge);
         }

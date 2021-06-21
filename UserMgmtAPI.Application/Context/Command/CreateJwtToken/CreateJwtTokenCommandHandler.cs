@@ -22,7 +22,7 @@ namespace UserMgmtAPI.Application.Context.Command.CreateJwtToken
         {
             //var users = await _userRepository.GetUserByUsername("tommylee");
 
-            return _tokenService.GenerateJwtToken(new SystemUser { Id = "1", FirstName = "DAVID", LastName = "LEE", Password = "xxx", Username = "YYY" });
+            return _tokenService.GenerateJwtToken(new SystemUser { Id = "1", FirstName = "DAVID", LastName = "LEE", SaltedPassword = "xxx", Username = "YYY" });
         }
     }
 }
