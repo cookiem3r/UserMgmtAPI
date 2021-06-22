@@ -14,8 +14,10 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
+        "DATABASEURL": "https://cookiem.documents.azure.com:443/",
         "SALT": "MySalt!",
         "SECRET": "SOMESECRETSTRING",
+        "DATABASEKEY": "jfKoWVmxwV4Zs5lAqQ3gmJZJFjZmoIKAcUbPZ8SiVCZpVX3yzuV8mr8QIHb7qtdKFMmMdiJ3XB1eT3vE1bnzIA==",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
