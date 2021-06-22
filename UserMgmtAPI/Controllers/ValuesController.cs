@@ -9,11 +9,10 @@ namespace UserMgmtAPI.Web.Controllers
     public class ValuesController : ControllerBase
     {
         [HttpGet]
-        [Route("values/secret")]
+        [Route("values/firstname")]
         public ActionResult SecretString()
-        {
-            var user = User.Identity;
-            return Ok("SECRET STRING");
+        {          
+            return Ok(new { firstname = User.Identity.Name  });
         }
     }
 }
