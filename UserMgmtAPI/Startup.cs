@@ -5,11 +5,14 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Identity.Web;
+using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyCQRSTemplate.Application.Common.Extensions;
 using Serilog;
 using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using UserMgmtAPI.Infrastructure.Common;
 using UserMgmtAPI.Persistence.Common;
@@ -61,12 +64,13 @@ namespace UserMgmtAPI
             services.AddApplicationInjections();
 
             var key = Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("SECRET"));
+
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(x =>
+            .AddJwtBearer("Custom",x =>
             {
                 x.RequireHttpsMetadata = false;
                 x.SaveToken = true;
@@ -80,6 +84,12 @@ namespace UserMgmtAPI
                     ClockSkew = TimeSpan.Zero
                 };
             });
+
+
+            services.AddMicrosoftIdentityWebApiAuthentication(Configuration, "AzureAd","Microsoft");
+
+            IdentityModelEventSource.ShowPII = true;
+            JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
